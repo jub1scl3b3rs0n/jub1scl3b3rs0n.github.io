@@ -1,0 +1,18 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+<div class="container">
+<h2>Available providers</h2>
+<ul>
+    {% for provider in providers %}
+        <li>
+            <a href="{% url 'provider_detail' provider.id %}">
+                {{ provider.user.username }}
+            </a>
+        </li>
+    {% endfor %}
+</ul>
+<br>
+<a href="{% url 'dashboard' %}" class="button">Back</a>
+</div>
+{% endblock %}
