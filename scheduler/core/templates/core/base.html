@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Scheduler</title>
+    <link rel="stylesheet" href="{% static 'core/styles.css' %}" />
+</head>
+<body>
+    {% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+        {{ message }}
+      </li>
+    {% endfor %}
+  </ul>
+{% endif %}
+
+    {% if user.is_authenticated %}
+        <div class="navbar"><p><a href="{% url 'dashboard' %}" class="btn">Dashboard</a> | <a href="{% url 'search_providers' %}">Search Providers</a> | Hello, {{ user.username }} | <a href="{% url 'logout' %}">Logout</a></p></div>
+    {% else %}
+        <div class="navbar"><a href="{% url 'login' %}">Login </a> | <a href="{% url 'register' %}"> Register</a></div>
+    {% endif %}
+    <hr>
+    {% block content %}{% endblock %}
+</body>
+</html>

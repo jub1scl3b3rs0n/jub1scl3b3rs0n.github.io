@@ -1,0 +1,22 @@
+{% extends "core/base.html" %}
+{% block content %}
+<div class="container">
+<h2>Serach providers</h2>
+<form method="get">
+    <input type="text" name="q" placeholder="Name" value="{{ query }}">
+    <button type="submit">Search</button>
+</form>
+
+{% if results %}
+    <ul>
+        {% for p in results %}
+            <li>{{ p.user.username }} — {{ p.service_type }}
+                <a href="{% url 'book' p.id %}">Book</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% elif query %}
+    <p>No providers found</p>
+{% endif %}
+</div>
+{% endblock %}
